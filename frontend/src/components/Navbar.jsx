@@ -1,6 +1,6 @@
 import { Link, useResolvedPath } from "react-router";
 import { MdShoppingCart } from "react-icons/md";
-import ThemeSelector from "./ThemeSelector";
+
 // import { useProductStore } from "../store/useProductStore";
 import { FaBagShopping } from "react-icons/fa6";
 function Navbar() {
@@ -22,7 +22,7 @@ function Navbar() {
                   className="font-semibold font-mono tracking-widest text-2xl 
                     bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
                 >
-                  POSGRESTORE
+                  PERNSTORE
                 </span>
 
                 
@@ -32,14 +32,14 @@ function Navbar() {
 
           {/* RIGHT SECTION */}
           <div className="flex items-center gap-4">
-            <ThemeSelector />
+            
 
             {isHomePage && (
-              <div className="indicator">
+              <div className="indicator  mx-2 ">
                 <div className="p-2 rounded-full hover:bg-base-200 transition-colors">
-                  <FaBagShopping className="size-5" />
+                  <FaBagShopping className="text-2xl" />
                   <span className="badge badge-sm badge-primary indicator-item">
-                    products.length
+                    0
                   </span>
                 </div>
               </div>
