@@ -4,6 +4,7 @@ import morgan from "morgan"
 import cors from "cors"
 import dotenv from "dotenv"
 import productRoutes from "./Routes/productRoutes.js"
+import { initDB, sql } from "./config/db.js"
 
 //----------------------------
 // ✨ dotenv ✨
@@ -32,15 +33,31 @@ app.use(helmet())
 //--------------------------
 
 
-app.use(morgan("dev"))
+   app.use(morgan("dev"))
 //--------------------------
 //📝 Comment: morgan is a logging middleware for HTTP request
 // --------------------------
 
 
 //----------------------------
-// ✨ routes ✨
+// ✨ Initialise and connect Database ✨
 //----------------------------
+
+const startServer = async () => {
+    try {
+      await initDB(); // Ensure DB is connected first
+      console.log("Database connected");
+      
+      app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+      });
+      
+    } catch (error) {
+      console.log("Database connection failed", error);
+    }
+  };
+  
+  startServer();
 
 
 // dummy get req
@@ -55,10 +72,3 @@ app.get("/api/products",productRoutes)
 
 
 
-//----------------------------
-// ✨ server ✨
-//----------------------------
-
-app.listen(PORT,()=>{
-    console.log(`Hello dev Server is running on port ${PORT}`)
-})
