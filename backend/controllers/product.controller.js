@@ -70,10 +70,102 @@ export const getProducts = async (req, res) => {
 };
 
 // 📌 Get route to get one specific product
-export const getProduct = async (req, res) => {};
+export const getProduct = async (req, res) => {
+
+    const {id}  = req.params
+
+    try {
+
+        const product = await sql`
+        SELECT * FROM products WHERE id = ${id}
+        `
+
+        res.status(200).json({
+            success:true, 
+            data:product[0]
+        })
+        
+    } catch (error) {
+        console.log("error",error)
+        res.status(500).json({success:false, message:"failed to get product details"})
+    }
+
+};
 
 // 📌 Put route to update product
-export const updateProduct = async (req, res) => {};
+export const updateProduct = async (req, res) => {
+
+    const {id} = req.params;
+
+    const {name,price,image} = req.body;
+
+    //validation
+    if(!name || !price || !image){
+        return res.status(400).json({
+            success:false,
+            error:"All fields are required"
+        })
+    }
+
+    try {
+
+        const updatedProduct = await sql`
+        UPDATE products
+        SET name = ${name}, price = ${price}, image = ${image}
+        WHERE id = ${id}
+        RETURNING *
+        `
+
+        if(updateProduct.length === 0){
+            return res.status(404).json({
+                success:false, 
+                message:"product not found"
+            })
+        }
+
+        res.status(200).json({
+            success:true, 
+            data:updatedProduct[0]
+        })
+        
+    } catch (error) {
+
+        console.log("error",error)      
+        res.status(500).json({
+            success:false, 
+            message:"failed to update product", 
+    })
+}
+
+};
 
 // 📌 Delete route to delete product
-export const deleteProduct = async (req, res) => {};
+export const deleteProduct = async (req, res) => {
+
+    const {id} =req.params;
+    try {
+
+        const deleteProduct= await sql`
+        DELETE FROM products WHERE id = ${id} RETURNING *
+        `
+
+        //check if product was deleted
+        if(deleteProduct.length === 0){
+            return res.status(404).json({   
+                success:false,
+                message:"product not found"
+            })
+        }
+
+        res.status(200).json({
+            success:true,
+            data:deleteProduct[0]
+        })
+        
+    } catch (error) {
+        console.log("error in deleting the product",error);
+        res.status(500).json({success:false, message:"Internal server errror"})
+
+    }
+
+};
