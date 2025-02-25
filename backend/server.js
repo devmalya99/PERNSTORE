@@ -3,8 +3,8 @@ import helmet from "helmet"
 import morgan from "morgan"
 import cors from "cors"
 import dotenv from "dotenv"
-import productRoutes from "./Routes/productRoutes.js"
 import { initDB, sql } from "./config/db.js"
+import { getProducts } from "./controllers/product.controller.js"
 
 //----------------------------
 // ✨ dotenv ✨
@@ -67,7 +67,7 @@ app.get("/test",(req,res)=>{
 })
 
 //Get all products from db
-app.get("/api/products",productRoutes)
+app.get("/api/products",getProducts)
 
 
 
