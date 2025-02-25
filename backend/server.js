@@ -4,7 +4,7 @@ import morgan from "morgan"
 import cors from "cors"
 import dotenv from "dotenv"
 import { initDB, sql } from "./config/db.js"
-import { getProducts } from "./controllers/product.controller.js"
+import productRouter  from "./Routes/productRoutes.js"
 
 //----------------------------
 // ✨ dotenv ✨
@@ -67,7 +67,7 @@ app.get("/test",(req,res)=>{
 })
 
 //Get all products from db
-app.get("/api/products",getProducts)
+app.use("/api/products",productRouter)
 
 
 
