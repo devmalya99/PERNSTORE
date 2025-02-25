@@ -27,7 +27,6 @@ export const initDB=async()=>{
              image VARCHAR(255) NOT NULL,
              price DECIMAL(10,2) NOT NULL,
              createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  
          )
       `
  
