@@ -1,9 +1,27 @@
-import React from 'react'
+import React from "react";
+import ProductHeroCards from "../components/ProductHeroCards";
+import { FaPlus } from "react-icons/fa6";
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
-  )
-}
+    <div className=" mx-10">
 
-export default HomePage
+      
+
+      <div className="flex flex-wrap justify-center gap-3 mt-6">
+
+      <ProductHeroCards />
+      <ProductHeroCards />
+      <ProductHeroCards />
+      <ProductHeroCards />
+      <ProductHeroCards />
+      <ProductHeroCards />
+    
+      </div>
+
+      
+    </div>
+  );
+};
+
+export default HomePage;
