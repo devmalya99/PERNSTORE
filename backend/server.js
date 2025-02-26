@@ -18,16 +18,16 @@ const PORT = process.env.PORT || 1000;
 // ✨ middlewares ✨
 //----------------------------
 
-app.use(express.json());
+app.use(express.json())
 
-app.use(cors());
+app.use(cors())
 
-app.use(helmet());
+app.use(helmet())
 //--------------------------
 //📝 Comment: helmet security middleware helps you protect your app from well-known vulnerabilities by setting HTTP headers
 //--------------------------
 
-app.use(morgan("dev"));
+app.use(morgan("dev"))
 //--------------------------
 //📝 Comment: morgan is a logging middleware for HTTP request
 // --------------------------
@@ -59,7 +59,7 @@ app.use(async (req, res, next) => {
           message: "You are blocked, please contact support",
         });
       }
-      return;
+      return
     }
 
     //check for spoofed bots
@@ -72,13 +72,13 @@ app.use(async (req, res, next) => {
         success: false,
         message: "You are blocked, please contact support",
       });
-      return;
+      return
     }
 
     next();
   } catch (error) {
     console.log("error", error);
-    next(error);
+    next(error)
   }
 });
 
@@ -99,7 +99,7 @@ const startServer = async () => {
   }
 };
 
-startServer();
+startServer()
 
 // dummy get req
 app.get("/test", (req, res) => {
@@ -108,4 +108,4 @@ app.get("/test", (req, res) => {
 });
 
 //Get all products from db
-app.use("/api/products", productRouter);
+app.use("/api/products", productRouter)

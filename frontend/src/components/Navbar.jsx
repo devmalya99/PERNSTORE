@@ -32,13 +32,7 @@ function Navbar() {
           <div className="flex items-center gap-4">
             {isHomePage && (
               <>
-                <div className="flex justify-center my-2 mx-auto px-4">
-                  {/* The button to open modal */}
-                  <label htmlFor="my_modal_6" className="btn  btn-accent">
-                    Add Product
-                    <FaPlus />
-                  </label>
-                </div>
+                
 
                 <div className="indicator  mx-2 ">
                   <div className="p-2 rounded-full hover:bg-base-200 transition-colors">
