@@ -1,7 +1,14 @@
 import React from "react";
-import { FaBoxesPacking, FaDollarSign, FaImages } from "react-icons/fa6";
+import { FaBoxesPacking, FaDollarSign, FaGlasses, FaImages } from "react-icons/fa6";
 
 const AddProductModel = () => {
+
+    const addProduct=(e)=>{
+
+    }
+
+
+
   return (
     <>
       {/* Put this part before </body> tag */}
@@ -9,13 +16,13 @@ const AddProductModel = () => {
 
       <div className="modal" role="dialog">
         <div className="modal-box">
-          <h3 className="text-lg font-bold">Add Product</h3>
-          <p className="py-4">This modal works with a hidden checkbox!</p>
+          <h3 className="text-lg font-bold mb-4">Add Product</h3>
+        
 
           {/* form to add product */}
 
           <form
-            // onSubmit={addProduct}
+            onSubmit={addProduct}
             className="space-y-6"
           >
             <div className="grid gap-6">
@@ -63,7 +70,7 @@ const AddProductModel = () => {
                 </div>
               </div>
 
-              {/* PRODUCT IMAGE */}
+              {/* PRODUCT IMAGE URL*/}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-base font-medium">
@@ -83,6 +90,30 @@ const AddProductModel = () => {
                   />
                 </div>
               </div>
+
+              {/* PRODUCT DESCRIPTION */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-base font-medium">
+                    Product description
+                  </span>
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-base-content/50">
+                    <FaGlasses className="size-5" />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Add some description"
+                    className="input input-bordered w-full pl-10 py-3 focus:input-primary transition-colors duration-200"
+                    //   value={formData.image}
+                    //   onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                  />
+                </div>
+              </div>
+
+
+
             </div>
 
             {/* MODAL ACTIONS */}

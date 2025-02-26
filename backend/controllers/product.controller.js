@@ -7,10 +7,10 @@ import {sql} from "../config/db.js"
 // 📌 Post route to create a product
 export const createProduct = async (req, res) => {
 
-    const {name,price,image} = req.body;
+    const {name,price,image,description} = req.body;
 
     //validation
-    if(!name || !price || !image){
+    if(!name || !price || !image || !description){
         return res.status(400).json({
             success:false,
             error:"All fields are required"
@@ -20,8 +20,8 @@ export const createProduct = async (req, res) => {
     try {
 
         const newProduct = await sql `
-          INSERT INTO products(name,price,image)
-          VALUES(${name},${price},${image})
+          INSERT INTO products(name,price,image,description)
+          VALUES(${name},${price},${image},${description})
           RETURNING * 
         `
         //Explanation ✨: 
